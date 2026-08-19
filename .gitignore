@@ -2,6 +2,8 @@
 **/.DS_Store
 *.ai
 *.pptx
+.env
+.env.*
 사진 모음/
 견적 문의_files/
 인증서 및 특허_files/

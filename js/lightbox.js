@@ -26,6 +26,10 @@ export function initLightbox() {
         });
     });
 
+    document.querySelectorAll('.prod-card[data-pdf]').forEach(card => {
+        card.addEventListener('click', () => window.open(card.dataset.pdf, '_blank'));
+    });
+
     lightboxClose.addEventListener('click', close);
     lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
