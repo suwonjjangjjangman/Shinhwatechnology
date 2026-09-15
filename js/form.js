@@ -10,8 +10,7 @@ export function initForm() {
         try {
             const res = await fetch('/', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString(),
+                body: new FormData(form),
             });
             if (!res.ok) throw new Error();
             alert('문의가 성공적으로 접수되었습니다.\n담당자가 빠르게 연락드리겠습니다.');

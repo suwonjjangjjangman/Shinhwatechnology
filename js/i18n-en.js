@@ -111,6 +111,7 @@ export const en = {
     'support.loc.office': 'Head Office & Factory No. 1', 'support.loc.lab': 'Corporate R&D Laboratory',
     'form.name.label': 'Name / Company', 'form.name.ph': 'Enter your name or company name',
     'form.email.label': 'Contact Email', 'form.email.ph': 'Email address for our reply',
+    'form.phone.label': 'Phone Number', 'form.phone.ph': '010-0000-0000',
     'form.subject.label': 'Subject', 'form.area.label': 'Field', 'form.area.m': 'Precision Machining',
     'form.area.hint': 'Please select the item you wish to inquire about.',
     'form.msg.label': 'Inquiry / Quote Details',

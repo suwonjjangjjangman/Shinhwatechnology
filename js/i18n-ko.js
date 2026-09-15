@@ -111,6 +111,7 @@ export const ko = {
     'support.loc.office': '본사 및 제1공장', 'support.loc.lab': '기업부설연구소',
     'form.name.label': '이름/회사명', 'form.name.ph': '이름 또는 회사명을 입력하세요.',
     'form.email.label': '연락처 이메일', 'form.email.ph': '답변 받으실 이메일 주소',
+    'form.phone.label': '연락처 (전화번호)', 'form.phone.ph': '010-0000-0000',
     'form.subject.label': '제목', 'form.area.label': '분야', 'form.area.m': '정밀가공',
     'form.area.hint': '문의하실 항목을 선택해주세요.',
     'form.msg.label': '문의내용/견적내용',
