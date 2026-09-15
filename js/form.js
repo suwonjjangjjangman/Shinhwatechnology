@@ -1,6 +1,29 @@
+function sanitizeFilename(name) {
+    const dot = name.lastIndexOf('.');
+    const base = dot > 0 ? name.slice(0, dot) : name;
+    const ext = dot > 0 ? name.slice(dot) : '';
+    return base.replace(/[^\p{L}\p{N}_-]+/gu, '_') + ext;
+}
+
+function sanitizeFileInput(form) {
+    const fileInput = form.querySelector('input[type="file"]');
+    const file = fileInput?.files[0];
+    if (!file) return;
+    const safeName = sanitizeFilename(file.name);
+    if (safeName === file.name) return;
+    const dt = new DataTransfer();
+    dt.items.add(new File([file], safeName, { type: file.type }));
+    fileInput.files = dt.files;
+}
+
 export function initForm() {
     const form = document.querySelector('form[name="inquiry-form"]');
     if (!form) return;
+
+    const referrerField = form.querySelector('input[name="landing_referrer"]');
+    if (referrerField) {
+        referrerField.setAttribute('value', document.referrer || '(직접 방문)');
+    }
 
     form.addEventListener('submit', async e => {
         e.preventDefault();
@@ -8,6 +31,7 @@ export function initForm() {
         btn.disabled = true;
         btn.textContent = '전송 중...';
         try {
+            sanitizeFileInput(form);
             const res = await fetch('/', {
                 method: 'POST',
                 body: new FormData(form),
