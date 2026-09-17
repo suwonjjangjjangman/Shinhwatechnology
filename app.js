@@ -6,6 +6,7 @@ import { initLightbox } from './js/lightbox.js';
 import { initForm } from './js/form.js';
 import { initI18n } from './js/i18n.js';
 import { initNotices } from './js/notices.js';
+import { initAnalytics } from './js/analytics.js';
 
 if (typeof lucide !== 'undefined') lucide.createIcons();
 
@@ -17,6 +18,7 @@ initLightbox();
 initForm();
 initI18n();
 initNotices();
+initAnalytics();
 
 if (window.netlifyIdentity) {
     window.netlifyIdentity.on('init', user => {

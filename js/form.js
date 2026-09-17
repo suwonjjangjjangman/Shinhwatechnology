@@ -1,3 +1,6 @@
+import { fillAttributionFields } from './attribution.js';
+import { trackLeadSubmission } from './analytics.js';
+
 function sanitizeFilename(name) {
     const dot = name.lastIndexOf('.');
     const base = dot > 0 ? name.slice(0, dot) : name;
@@ -20,10 +23,7 @@ export function initForm() {
     const form = document.querySelector('form[name="inquiry-form"]');
     if (!form) return;
 
-    const referrerField = form.querySelector('input[name="landing_referrer"]');
-    if (referrerField) {
-        referrerField.setAttribute('value', document.referrer || '(직접 방문)');
-    }
+    fillAttributionFields(form);
 
     form.addEventListener('submit', async e => {
         e.preventDefault();
@@ -37,6 +37,7 @@ export function initForm() {
                 body: new FormData(form),
             });
             if (!res.ok) throw new Error();
+            trackLeadSubmission(form);
             alert('문의가 성공적으로 접수되었습니다.\n담당자가 빠르게 연락드리겠습니다.');
             form.reset();
         } catch {
