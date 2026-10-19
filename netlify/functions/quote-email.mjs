@@ -6,16 +6,32 @@ function getAttachmentUrl(data) {
     return value;
 }
 
-function buildEmailText(data, attachmentUrl) {
-    const fields = [
-        ['이름/회사명', data.name], ['이메일', data.email], ['연락처', data.phone],
-        ['분야', data.area], ['최초 방문 페이지', data.first_landing_page],
-        ['최초 유입', data.first_referrer], ['UTM 출처', data.utm_source],
-        ['UTM 매체', data.utm_medium], ['캠페인', data.utm_campaign],
-    ];
+function formatSection(title, fields) {
     const lines = fields.map(([label, value]) => `${label}: ${value || '-'}`);
-    if (attachmentUrl) lines.push(`원본 파일 링크: ${attachmentUrl}`);
-    return `${lines.join('\n')}\n\n[문의내용]\n${data.message || ''}`;
+    return `[${title}]\n${lines.join('\n')}`;
+}
+
+function buildEmailText(data, attachmentUrl) {
+    const product = formatSection('01 견적요청 제품', [
+        ['분야', data.area], ['제품명/품번', data.product],
+        ['제조사', data.manufacturer], ['수량', data.quantity],
+    ]);
+    const customer = formatSection('02 의뢰고객 정보', [
+        ['회사명', data.company], ['부서명', data.department], ['직위', data.position],
+        ['성명', data.name], ['이메일', data.email], ['전화번호', data.phone],
+        ['팩스번호', data.fax], ['휴대폰번호', data.mobile],
+    ]);
+    const source = formatSection('유입 정보', [
+        ['최초 방문 페이지', data.first_landing_page], ['최초 유입', data.first_referrer],
+        ['UTM 출처', data.utm_source], ['UTM 매체', data.utm_medium], ['캠페인', data.utm_campaign],
+    ]);
+    const file = attachmentUrl ? `\n원본 파일 링크: ${attachmentUrl}` : '';
+    return `${product}\n\n${customer}\n\n[03 추가 문의사항]\n${data.message || ''}${file}\n\n${source}`;
+}
+
+function buildSubject(data) {
+    const who = [data.company, data.name].filter(Boolean).join(' ');
+    return `[신규 견적 문의] ${who || '이름 없음'} - ${data.product || data.area || '일반 문의'}`;
 }
 
 async function sendQuote(data, attachmentUrl = '') {
@@ -32,7 +48,7 @@ async function sendQuote(data, attachmentUrl = '') {
             from: process.env.RESEND_FROM,
             to: process.env.QUOTE_NOTIFY_TO.split(',').map(email => email.trim()),
             reply_to: data.email,
-            subject: `[신규 견적 문의] ${data.subject || data.name || '제목 없음'}`,
+            subject: buildSubject(data),
             text: buildEmailText(data, attachmentUrl),
             attachments,
         }),

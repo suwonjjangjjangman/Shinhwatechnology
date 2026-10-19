@@ -895,41 +895,82 @@
                             <input type="hidden" name="utm_content">
                             <input type="hidden" name="utm_term">
                             <input type="hidden" name="gclid">
-                            <div class="form-group">
-                                <label><span data-i18n="form.name.label">이름/회사명</span> <span class="required-star">*</span></label>
-                                <input type="text" name="name" class="form-control" placeholder="이름 또는 회사명을 입력하세요." data-i18n-placeholder="form.name.ph" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span data-i18n="form.email.label">연락처 이메일</span> <span class="required-star">*</span></label>
-                                <input type="email" name="email" class="form-control" placeholder="답변 받으실 이메일 주소" data-i18n-placeholder="form.email.ph" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span data-i18n="form.phone.label">연락처 (전화번호)</span> <span class="required-star">*</span></label>
-                                <input type="tel" name="phone" class="form-control" placeholder="010-0000-0000" data-i18n-placeholder="form.phone.ph" required>
-                            </div>
-                            <div class="form-group">
-                                <label><span data-i18n="form.subject.label">제목</span> <span class="required-star">*</span></label>
-                                <input type="text" name="subject" class="form-control" required>
-                            </div>
+                            <h4 class="form-section-title"><span class="form-section-num">01</span> <span data-i18n="form.sec.product">견적요청 제품</span></h4>
                             <div class="form-group">
                                 <label><span data-i18n="form.area.label">분야</span> <span class="required-star">*</span></label>
-                                <div style="display: flex; gap: 1.5rem; margin-top: 0.5rem;">
-                                    <label style="display:flex; align-items:center; gap:0.4rem; font-weight:400; cursor:pointer;"><input type="radio" name="area" value="정밀가공"> <span data-i18n="form.area.m">정밀가공</span></label>
-                                    <label style="display:flex; align-items:center; gap:0.4rem; font-weight:400; cursor:pointer;"><input type="radio" name="area" value="RF"> RF</label>
+                                <div class="form-radio-row">
+                                    <label class="form-radio"><input type="radio" name="area" value="정밀가공" required> <span data-i18n="form.area.m">정밀가공</span></label>
+                                    <label class="form-radio"><input type="radio" name="area" value="RF"> RF</label>
                                 </div>
-                                <p style="font-size: 0.8rem; color: var(--clr-text-light); margin-top: 0.4rem;" data-i18n="form.area.hint">문의하실 항목을 선택해주세요.</p>
+                                <p class="form-hint" data-i18n="form.area.hint">문의하실 항목을 선택해주세요.</p>
                             </div>
                             <div class="form-group">
+                                <label><span data-i18n="form.product.label">제품명/품번</span></label>
+                                <input type="text" name="product" class="form-control" placeholder="예) GA-0600 Cu Gasket 6.0&quot; CF Flange" data-i18n-placeholder="form.product.ph">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><span data-i18n="form.maker.label">제조사</span></label>
+                                    <input type="text" name="manufacturer" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label><span data-i18n="form.qty.label">수량</span></label>
+                                    <input type="text" name="quantity" class="form-control" placeholder="예) 1EA" data-i18n-placeholder="form.qty.ph">
+                                </div>
+                            </div>
+
+                            <h4 class="form-section-title"><span class="form-section-num">02</span> <span data-i18n="form.sec.customer">의뢰고객 정보</span></h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><span data-i18n="form.company.label">회사명</span> <span class="required-star">*</span></label>
+                                    <input type="text" name="company" class="form-control" autocomplete="organization" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><span data-i18n="form.dept.label">부서명</span></label>
+                                    <input type="text" name="department" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><span data-i18n="form.name.label">성명</span> <span class="required-star">*</span></label>
+                                    <input type="text" name="name" class="form-control" autocomplete="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><span data-i18n="form.position.label">직위</span></label>
+                                    <input type="text" name="position" class="form-control" autocomplete="organization-title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label><span data-i18n="form.email.label">이메일</span> <span class="required-star">*</span></label>
+                                <input type="email" name="email" class="form-control" placeholder="답변 받으실 이메일 주소" data-i18n-placeholder="form.email.ph" autocomplete="email" required>
+                            </div>
+                            <div class="form-row form-row--3">
+                                <div class="form-group">
+                                    <label><span data-i18n="form.phone.label">전화번호</span> <span class="required-star">*</span></label>
+                                    <input type="tel" name="phone" class="form-control" placeholder="031-000-0000" data-i18n-placeholder="form.phone.ph" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><span data-i18n="form.fax.label">팩스번호</span></label>
+                                    <input type="tel" name="fax" class="form-control" placeholder="02-000-0000" data-i18n-placeholder="form.fax.ph">
+                                </div>
+                                <div class="form-group">
+                                    <label><span data-i18n="form.mobile.label">휴대폰번호</span></label>
+                                    <input type="tel" name="mobile" class="form-control" placeholder="010-0000-0000" data-i18n-placeholder="form.mobile.ph" autocomplete="tel">
+                                </div>
+                            </div>
+
+                            <h4 class="form-section-title"><span class="form-section-num">03</span> <span data-i18n="form.sec.extra">추가 문의사항</span></h4>
+                            <div class="form-group">
                                 <label><span data-i18n="form.msg.label">문의내용/견적내용</span> <span class="required-star">*</span></label>
-                                <textarea name="message" class="form-control" rows="6" required></textarea>
-                                <p style="font-size: 0.8rem; color: var(--clr-text-light); margin-top: 0.4rem;" data-i18n="form.msg.hint">*수량, 재질, 납기 등을 구체적으로 작성해주시면 보다 정확한 답변이 가능합니다.</p>
+                                <textarea name="message" class="form-control" rows="6" placeholder="예) 1EA 단가 및 납기일 문의드립니다. 외경 120.5 / 내경 102 / 두께 2.2 규격이 맞는지도 확인 부탁드립니다." data-i18n-placeholder="form.msg.ph" required></textarea>
+                                <p class="form-hint" data-i18n="form.msg.hint">*수량, 재질, 납기 등을 구체적으로 작성해주시면 보다 정확한 답변이 가능합니다.</p>
                             </div>
                             <div class="form-group">
                                 <label><span data-i18n="form.file.label">도면/파일 첨부</span></label>
                                 <input type="file" name="attachment" class="form-control" accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png,.zip" data-i18n-placeholder="form.file.ph">
-                                <p style="font-size: 0.8rem; color: var(--clr-text-light); margin-top: 0.4rem;" data-i18n="form.file.hint">PDF, DWG, DXF, JPG, PNG, ZIP 파일 첨부 가능 (선택)</p>
+                                <p class="form-hint" data-i18n="form.file.hint">PDF, DWG, DXF, JPG, PNG, ZIP 파일 첨부 가능 (선택)</p>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" data-i18n="form.submit">문의 접수</button>
+                            <button type="submit" class="btn btn-primary form-submit" data-i18n="form.submit">문의 접수</button>
                         </form>
                     </div>
                 </div>

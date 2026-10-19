@@ -1162,6 +1162,59 @@ html[lang="en"] .en-sub { display: none; }
     box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.1);
 }
 
+.form-section-title {
+    margin: 2.5rem 0 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--clr-navy);
+    font-size: 1.1rem;
+    color: var(--clr-navy);
+}
+
+.form-section-title:first-of-type {
+    margin-top: 0;
+}
+
+.form-section-num {
+    color: var(--clr-gold);
+    margin-right: 0.25rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 1rem;
+}
+
+.form-row--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.form-radio-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.form-group .form-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-hint {
+    font-size: 0.8rem;
+    color: var(--clr-text-light);
+    margin-top: 0.4rem;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 1rem;
+}
+
 /* Notice Table */
 .notice-table {
     width: 100%;
@@ -1921,6 +1974,8 @@ body.modal-open {
     .data-card-grid,
     .prod-grid,
     .contact-layout,
+    .form-row,
+    .form-row--3,
     .ceo-layout {
         grid-template-columns: 1fr;
     }
